@@ -1,0 +1,332 @@
+{
+    "_version": "1.49.0",
+    "sap.app": {
+        "id": "ch.unige.facturationinterne",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.11.0",
+            "toolsId": "b7a013cb-672b-42d0-ba08-ef5d15172444"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/Z_FI_FACTURATION_INT_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZSB_GESTION_ACCES": {
+                "uri": "/sap/opu/odata/sap/ZSB_GESTION_ACCES/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZSB_GESTION_ACCES_Annotation"
+                    ],
+                    "localUri": "localService/ZSB_GESTION_ACCES.xml/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "Z_WBS_ELEMENT_SBIND": {
+                "uri": "/sap/opu/odata/sap/Z_WBS_ELEMENT_SBIND/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/Z_WBS_ELEMENT_SBIND.xml/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "Z_BUDGET_ACCOUNT_SBIND": {
+                "uri": "/sap/opu/odata/sap/Z_BUDGET_ACCOUNT_SBIND/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/Z_BUDGET_ACCOUNT_SBIND.xml/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZSB_GESTION_ACCES_Annotation": {
+                "uri": "/destinations/UNIGE_S4/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZSB_GESTION_ACCES_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZSB_GESTION_ACCES.xml/ZSB_GESTION_ACCES_Annotation.xml"
+                }
+            },
+            "Z_ACCOUNTS_SRV": {
+                "uri": "/sap/opu/odata/sap/Z_ACCOUNTS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+ 
+                    ],
+                    "localUri": "localService/Z_ACCOUNTS_SRV.xml/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "Z_SB_USREFUS": {
+                "uri": "/sap/opu/odata/sap/Z_SB_USREFUS/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+ 
+                    ],
+                    "localUri": "localService/Z_SB_USREFUS.xml/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "Posting": {
+                "uri": "model/Posting.json",
+                "type": "JSON"
+            },
+            "OPosting": {
+                "uri": "model/OPosting.json",
+                "type": "JSON"
+            },
+            "Ateliers": {
+                "uri": "model/Ateliers.json",
+                "type": "JSON"
+            },
+            "userInfo": {
+                "uri": "model/userInfo.json",
+                "type": "JSON"
+            },
+            "Total": {
+                "uri": "model/Total.json",
+                "type": "JSON"
+            } ,
+            "Create": {
+                "uri": "model/Create.json",
+                "type": "JSON"
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "FacturationInterne-create": {
+                    "semanticObject": "FacturationInterne",
+                    "action": "create",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    }
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.118.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "ch.unige.facturationinterne.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            },
+            "Z_BUDGET_ACCOUNT_SBIND": {
+                "dataSource": "Z_BUDGET_ACCOUNT_SBIND",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "Z_WBS_ELEMENT_SBIND": {
+                "dataSource": "Z_WBS_ELEMENT_SBIND",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "ZSB_GESTION_ACCES": {
+                "dataSource": "ZSB_GESTION_ACCES",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "Z_ACCOUNTS_SRV": {
+                "dataSource": "Z_ACCOUNTS_SRV",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "Z_SB_USREFUS": {
+                "dataSource": "Z_SB_USREFUS",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "Posting": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "Posting"
+            },
+            "OPosting": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "OPosting"
+            },
+            "Ateliers": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "Ateliers"
+            },
+            "Total": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "Total"
+            } ,
+            "userInfo": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "userInfo"
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "ch.unige.facturationinterne.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "home",
+                    "target": "home"
+                },
+                {
+                    "pattern": "",
+                    "name": "startview",
+                    "target": [
+                        "startview"
+                    ]
+                },
+                {
+                    "pattern": "createview",
+                    "name": "createview",
+                    "target": [
+                        "createview"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetStartView": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "StartView",
+                    "viewName": "StartView"
+                },
+                "home": {
+                    "viewId": "StartView",
+                    "viewName": "StartView",
+                    "viewLevel": 1,
+                    "title": "{i18n>flpSubtitle}"
+                },
+                "worklist": {
+                    "viewName": "StartView",
+                    "viewId": "StartView",
+                    "viewLevel": 1,
+                    "title": "{i18n>flpSubtitle}"
+                },
+         
+                "createview": {
+                    "viewName": "CreateView",
+                    "viewId": "CreateView",
+                    "viewLevel": 1,
+                    "title": "{i18n>AtelierFragment}"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "ch.unige.facturationinterne.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "chunigefacturationinterne"
+    }
+}
