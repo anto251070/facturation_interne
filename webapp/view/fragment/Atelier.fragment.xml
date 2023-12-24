@@ -1,0 +1,90 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	
+	<Dialog id="ch.unige.fi.Atelier.Dialog" title="{i18n>AtelierFragment}">
+	 <content>
+    
+			<List id="ch.unige.fi.AtelierSelectDialog" mode="SingleSelectMaster" 
+			headerText="{i18n>AtelierChoisir}" footerText=""   class="titolo"
+			backgroundDesign="Solid" showSeparators="All" 
+			growing="true" growingThreshold="10" growingScrollToLoad="false"
+			items="{Ateliers>/Collection}"
+			    selectionChange="onAtelierSelecSearchOkButtonPress"
+				 itemPress="onAtelierOkButtonPress">
+        
+	
+						
+		
+				<items>
+					<CustomListItem id="ch.unige.fi.Atelier.ListItem" type="Active" >
+	            
+
+						<VBox id="ch.unige.fi.Atelier.VBox1" width="100%"  class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom sapUiNoMarginTop">
+							<FlexBox id="ch.unige.fi.Atelier.FlexBox1" alignItems="Start" 
+									justifyContent="SpaceBetween" class="sapUiSmallMarginEnd">
+
+										<items>
+
+											<Title id="ch.unige.fi.Atelier.Title" level="H2" 
+											text="{Ateliers>Serv} {Ateliers>Descr} {Ateliers>Faculte} " textAlign="Left"/>
+	
+										</items>
+	
+							</FlexBox>
+						</VBox>
+
+
+                       <HBox id="ch.unige.fi.Atelier.HBox2" >
+							
+							<VBox id="ch.unige.fi.Atelier.VBox2" width="100%" 
+							 class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom sapUiNoMarginTop">
+
+								<FlexBox id="ch.unige.fi.Atelier.FlexBox2" alignItems="Start" 
+								 justifyContent="SpaceBetween" class="sapUiSmallMarginEnd">
+
+									<items>
+										<Label id="ch.unige.fi.Atelier.Label1" 
+										  text="{Ateliers>Atelier} {Ateliers>Rue} {Ateliers>City}" />
+
+									</items>
+								</FlexBox>
+							</VBox>
+
+						</HBox>   
+ 
+
+                        <HBox id="ch.unige.fi.Atelier.HBox3" >
+							
+							<VBox id="ch.unige.fi.Atelier.VBox3" width="100%" 
+							 class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom sapUiNoMarginTop">
+
+								<FlexBox id="ch.unige.fi.Atelier.FlexBox3" alignItems="Start" 
+								 justifyContent="SpaceBetween" class="sapUiSmallMarginEnd">
+
+									<items>				 
+				                     <Label id="ch.unige.fi.Atelier.Label2" 
+										  text="Resp.: {Ateliers>Resp} {Ateliers>Emailresp}" />
+									</items>
+
+								</FlexBox>
+							</VBox>
+
+						</HBox>   
+ 
+					</CustomListItem>		
+				</items>
+		
+	 	</List>
+
+	 
+ 	 </content>
+	 	<beginButton/>
+
+		<buttons>
+			<Button id="OKButton1" text="{i18n>okButton}" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onAtelierOkButtonPress"/>
+			<Button id="KOButton1" text="{i18n>cancelButton}" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onAtelierCancelButtonPress"/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+		<subHeader/>
+	</Dialog>
+</core:FragmentDefinition>
