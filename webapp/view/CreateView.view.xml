@@ -1,0 +1,332 @@
+<mvc:View
+	controllerName="ch.unige.facturationinterne.controller.CreateView"
+	xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.uxap"
+	xmlns:m="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:forms="sap.ui.layout.form"
+	xmlns:upload="sap.m.upload"
+	height="100%"
+	> 
+    
+    <!--
+     https://ui5.sap.com//#/entity/sap.uxap.HeaderFacetPattern/sample/sap.uxap.sample.ObjectPageSectionShowTitle
+	-->
+	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle id="_IDGenObjectPageDynamicHeaderTitle1">
+				<expandedHeading>
+					<m:Title id="_IDGenTitle1" text="{Posting>/Faculte} - {Posting>/Descr}" />
+				</expandedHeading>
+
+				<snappedHeading>
+					<m:HBox id="_IDGenHBox1">
+						<m:Avatar id= "_IDAvatarGenHBox1" src="./test-resources/sap/uxap/images/robot.png"
+							class="sapUiMediumMarginEnd"
+							displayShape="Square" />
+						<m:VBox id= "_IDGenVBox1">
+							<m:Title id= "_IDTitleGenVBox1" text="{Posting>/Faculte} - {Posting>/Descr}" />
+							<m:Label id= "_IDLabelGenVBox1" text="{Posting>/Serv}" />
+						</m:VBox>
+					</m:HBox>
+				</snappedHeading>
+
+				<expandedContent>
+					<m:Label id= "_IDGenHeaderLabel1" text="{Posting>/Serv}"/>
+				</expandedContent>
+
+				<snappedTitleOnMobile>
+					<m:Title id= "_IDGenHeaderTitle1" text="{Posting>/Faculte} - {Posting>/Descr}" />
+				</snappedTitleOnMobile>
+
+				<actions>
+					<m:Button id="_IDGenButton1" text="SAUVEGARDER" type="Emphasized" press="onInvoiceSave"/>
+					<m:Button id="_IDGenButton2" text="PREVISUALISATION FACTURE" press="onInvoicePreview" enabled="{Create>/PreviewEnabled}"/>
+					<m:Button id="_IDGenButton3" text="COMPTABILISER" press="onInvoiceAccounting"/>
+                    <m:Button id="_IDGenButton4" text="ANNULER" />
+				</actions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+		<headerContent>
+			<m:FlexBox id="_IDGenFlexBox1" wrap="Wrap" fitContainer="true">
+				<m:Avatar id="_IDGenAvatar1" src="./test-resources/sap/uxap/images/robot.png"
+					class="sapUiMediumMarginEnd sapUiSmallMarginBottom"
+					displayShape="Square"
+					displaySize="L" />
+
+				<m:VBox id= "_IDGenVBox2" class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+
+					<m:HBox id="_IDGenHBox2" class="sapUiTinyMarginBottom" renderType="Bare">
+						<m:Label id= "_IDLabelGenHBox2" text="Unique ID:" class="sapUiTinyMarginEnd" />
+						<m:Text id= "_IDTextGenHBox2" text=" {userInfo>/name}" />
+					</m:HBox>
+
+					<m:HBox id="_IDGenHBox3" class="sapUiTinyMarginBottom" renderType="Bare">
+						<m:Label id= "_IDLabelGenHBox3" text="Nom:" class="sapUiTinyMarginEnd" />
+						<m:Text id= "_IDTextGenHBox3" text=" {userInfo>/lastname}" />
+					</m:HBox>
+
+					<m:HBox id="_IDGenHBox4" class="sapUiTinyMarginBottom" renderType="Bare">
+						<m:Label id= "_IDLabelGenHBox4" text="Prénom:" class="sapUiTinyMarginEnd" />
+						<m:Link id= "_IDLinkGenHBox4" text=" {userInfo>/firstname}" />
+					</m:HBox>
+					  <m:HBox id="_IDGenHBox5">
+						<m:Label id= "_IDLabelGenHBox5" text="email:" class="sapUiTinyMarginEnd" />
+						<m:Link id= "_IDLinkGenHBox5" text=" {userInfo>/email}" />
+					</m:HBox>
+
+				</m:VBox>
+
+				<m:VBox id= "_IDGenVBox3" class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+					<m:Title id= "_IDTitleGenVBox3" text="Status" class="sapUiTinyMarginBottom" />
+					<m:ObjectStatus text="Delivery"
+						state="Success"
+						class="sapMObjectStatusLarge" 
+						id= "_IDObjStatusGenVBox3" />
+				</m:VBox>
+
+		
+				<m:VBox id= "_IDGenVBox4" class="sapUiLargeMarginEnd">
+					<m:Title id= "_IDTitleGenVBox4" text="Montant" class="sapUiTinyMarginBottom" />
+					<m:ObjectNumber number="{Posting>/Amount}"
+						unit="CHF"
+						emphasized="false"
+						class="sapMObjectNumberLarge" 
+						id= "_IDObjNumberGenVBox4" />
+				</m:VBox>
+			</m:FlexBox>
+		</headerContent>
+
+		<sections>
+			<ObjectPageSection id="_IDSectionAtelier" titleUppercase="false" title="Atelier">
+				
+			</ObjectPageSection>
+			<ObjectPageSection id="_IDGenObjectPageSection1" titleUppercase="false" title="Date et période comptable">
+				<subSections>
+					<ObjectPageSubSection id="_IDGenObjectPageSubSection1" title="" showTitle="false">
+						<blocks>
+							<forms:SimpleForm id="_IDGenSimpleForm1" class="sapUxAPObjectPageSubSectionAlignContent"
+								layout="ColumnLayout"
+								columnsM="2"
+								columnsL="3"
+								columnsXL="4">
+  	 
+	                              	<m:Label id="_IDGenLabel1" text="Date pièce" />
+								  	<m:DatePicker id="_IDGenDatePicker1" class="sapUiSmallMarginBottom" 
+									displayFormat="dd-MM-yyyy" valueFormat="yyyy-MM-dd" 
+									value="{ constraints : {displayFormat : 'Date'},
+									         path :'Posting>/Bldat',
+											 type : 'sap.ui.model.odata.type.DateTime'
+											  }"/>
+          
+								 	 <m:Label id="_IDGenLabel2" text="Date comptable" />
+								 	 <m:DatePicker id="_IDGenDatePicker2" class="sapUiSmallMarginBottom" 
+									  displayFormat="dd-MM-yyyy" valueFormat="yyyy-MM-dd"
+									   value="{ constraints : {displayFormat : 'Date'},
+										       path :'Posting>/Budat' ,
+									           type : 'sap.ui.model.odata.type.DateTime'
+											  }"/>
+                            
+									 
+
+								 	 <m:Label id="_IDGenLabel3" text="Comptabiliser sur année précédente:" />
+
+									<m:RadioButtonGroup id="groupB" valueState="Success">
+										<m:RadioButton id="_IDGenRadioButton1" text="Non" selected="true" />
+										<m:RadioButton id="_IDGenRadioButton2" text="Oui" />
+									</m:RadioButtonGroup>
+
+							</forms:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+
+
+					<ObjectPageSubSection id="_IDGenObjectPageSubSection2" title="Entête" showTitle="false">
+						<blocks>
+							<forms:SimpleForm class="sapUxAPObjectPageSubSectionAlignContent"
+								layout="ColumnLayout"
+								columnsM="2"
+								columnsL="3"
+								columnsXL="4"
+								id= "_IDGenSimpleForm2" >
+								<core:Title id= "_IDTitle1GenSimpleForm2" text="Entête" />
+
+								<m:Label id= "_IDLabel1SimpleForm2" text="Order ID" />
+								<m:Text id= "_IDText1SimpleForm2" text="589946637" />
+
+								<m:Label id= "_IDLabel2SimpleForm2" text="Cotract" />
+								<m:Link id= "_IDLink2SimpleForm2" text="10045876" />
+
+								<m:Label id= "_IDLabel3SimpleForm2" text="Transaction Date:" />
+								<m:Text id= "_IDText3SimpleForm2" text="May 6, 2018" />
+
+								<m:Label id= "_IDLabel4SimpleForm2" text="Expected Delivery Date" />
+								<m:Text id= "_IDText4SimpleForm2" text="June 23, 2018" />
+
+								<m:Label id= "_IDLabel5SimpleForm2" text="Factory" />
+								<m:Text id= "_IDText5SimpleForm2" text="Orlando, FL" />
+
+								<m:Label id= "_IDLabel6SimpleForm2" text="Supplier" />
+								<m:Text id= "_IDText6SimpleForm2" text="Robotech" />
+
+								<core:Title  id= "_IDTitle2SimpleForm2" text="Configuration Accounts" />
+
+								<m:Label id= "_IDLabel7SimpleForm2" text="Model" />
+								<m:Text id= "_IDText7SimpleForm2" text="Robot Arm Series 9" />
+
+								<m:Label id= "_IDLabel8SimpleForm2" text="Color" />
+								<m:Text id= "_IDText8SimpleForm2" text="White (default)" />
+
+								<m:Label id= "_IDLabel9SimpleForm2" text="Socket" />
+								<m:Text  id= "_IDText9SimpleForm2" text="Default Socket 10" />
+
+								<m:Label id= "_IDLabel10SimpleForm2" text="Leasing Instalment" />
+								<m:Text  id= "_IDText10SimpleForm2" text="379.99 USD per month" />
+
+								<m:Label id= "_IDLabel11SimpleForm2" text="Axis" />
+								<m:Text  id= "_IDText11SimpleForm2" text="6 Axis" />
+							</forms:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+			</subSections>
+			</ObjectPageSection>
+
+	     	<ObjectPageSection id="_IDGenObjectPageSection2" titleUppercase="false" title="Postes">
+				<subSections>
+					<ObjectPageSubSection id="_IDGenObjectPageSubSection2k" title="Postes" showTitle="false">
+						<blocks>
+							<m:Table id="_IDGenTable1k" class="sapUxAPObjectPageSubSectionAlignContent" 
+							alternateRowColors="true" 
+							width="auto"
+							items="{  path: '/toItems' }">
+								<m:headerToolbar>
+									<m:OverflowToolbar id="_IDGenOverflowToolbar1">
+									    <m:Text  id="_IDGenOverflowToolbarText11" text="Ajouter Poste"/>
+                                                    <m:OverflowToolbarButton id="_IDGenOverflowToolbarButton01" 
+                                                    icon="sap-icon://add" text="Ajouter Poste" iconFirst="false" type="Reject"
+                                                     press="addRow"/>
+										      <m:ToolbarSpacer id="_IDGenToolbarSpacer10"/>
+                                                    <m:Text id="ch.unige.fi.fimoduletxt.Total.TxT" text="Total"/>
+                                                    <m:Text id="ch.unige.fi.fimoduletxt.Total" text="{path: 'Total>/Total_Reg'}"/>
+                                                    <m:Text id="ch.unige.fi.fimoduletxt.Total.Divise" text=" / "/> 
+                                                    <m:Text id="ch.unige.fi.fimoduletxt.Total.Items" text="{path: 'Total>/Total'}"/>
+                                              <m:ToolbarSpacer id="_IDGenToolbarSpacer111"/>
+										<m:ToolbarSpacer id="_IDGenToolbarSpacer1" />
+										<m:SearchField id="_IDGenSearchField1" width="17.5rem" />
+										<m:OverflowToolbarButton id="_IDGenOverflowToolbarButton11" tooltip="Sort"
+											text="Sort"
+											icon="sap-icon://sort" 
+											press="onSort" />
+								        <m:OverflowToolbarButton id="_IDGenOverflowToolbarButton22" tooltip="Export" 
+										    text="Export" 
+											icon="sap-icon://excel-attachment" 
+											press="onExport"/>
+
+									</m:OverflowToolbar>
+								</m:headerToolbar>
+
+                                         <m:columns>
+                                                <m:Column id="_IDGenColumn1del">
+                                                    <m:Text id="_IDGenText1delx" text=""  width="3rem" />
+                                                </m:Column>
+                                                <m:Column id="_IDGenColumn1x">
+                                                    <m:Text id="_IDGenText1x" text="Compte général" />
+                                                </m:Column>
+                                                <m:Column id="_IDGenColumn2x" minScreenWidth="Tablet" demandPopin="true">
+                                                    <m:Text id="_IDGenText2x" text="Montant" />
+                                                </m:Column>
+                                                <m:Column id="_IDGenColumn3x" minScreenWidth="Tablet" demandPopin="true">
+                                                    <m:Text id="_IDGenText3x" text="Texte de poste" />
+                                                </m:Column>
+                                                <m:Column id="_IDGenColumn4x"  minScreenWidth="Tablet" demandPopin="true">
+                                                    <m:Text id="_IDGenText4x" text="Elément d’OTP" />
+                                                </m:Column>
+                                            </m:columns>
+
+								<m:items>
+									<m:ColumnListItem id="_IDGenColumnListItem19">
+									    <m:Button id="_IDGenButton1Y" icon="sap-icon://delete" press="deleteRow" type="Reject"/>
+							            <m:Input id="_IDGenLink1v" value="{Compte}" valueHelpRequest="onCONFilterSelect" showValueHelp="true"  textAlign="Right"/>
+                                        <m:Input id="_IDGenText1v"  
+													 value="{   parts:[     {path:'Montant'}     ], 
+                                                     type: 'sap.ui.model.type.Currency',   
+													 formatOptions:{  showMeasure: false}}" 
+                                                     liveChange="onCalculateTotalItems" 
+													 textAlign="Center" />
+
+                                        <m:Text id="_IDGenText2v" text="{Txt}"/>
+                                        <m:Input  id="_IDGenText3v" value="{Wbselement}" textAlign="Right" valueHelpRequest="onODPFilterSelect" showValueHelp="true"/>
+                                    </m:ColumnListItem>
+					 
+						 
+								</m:items>
+							</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+
+
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection id="_IDGenObjectPageSection3" titleUppercase="false" title="Pièces jointes">
+				<subSections>
+					<ObjectPageSubSection id="_IDGenObjectPageSubSection3k" title="Pièces jointes">
+						<upload:UploadSet
+                                        noDataText="Aucun fichier trouvé"
+                                        maximumFileSize="10"
+                                        multiple="false"
+                                        noDataDescription="Faites glisser ici les fichiers à charger ou utilisez le bouton &quot;+&quot;."
+                                        change="onAttachmentChange"
+                                        uploadCompleted="onUploadCompleted"
+                                        beforeUploadStarts="onBeforeUploadStarts"
+                                        fileTypes="pdf"
+                                         mediaTypes="application/pdf,application/x-pdf"
+                                        items="{
+                                                                              path: 'Posting>/toFiles',
+                                                                              parameters: {
+                                                                                    $orderby: 'createdAt desc'
+                                                                                          },
+                                                                              templateShareable : 'true' }"
+                                        showSeparators="Inner" 
+										fileDeleted="onAttachmentDeleted"
+                                        id="_IDUploadSet">
+ 
+ 
+ 
+                  	<upload:items>
+                        <upload:UploadSetItem 	fileName="{Filename}"  
+                                                mediaType="{Mimetype}"
+                                                url="{Url}"
+                                                uploadState="{uploadState}"
+                                                visibleRemove="false"
+                                                enabledRemove="false" 
+												id="_IDUploadSetItem">
+                                 
+                                                    <upload:attributes>
+                                                        <m:ObjectAttribute    title="{Posting>/Attachmentid}"
+                                                                            text="{Mimetype}"
+																			id= "_IDObjectAttribute"
+                                                                             />
+                                                    </upload:attributes>
+ 
+                                                    <upload:statuses>
+                                                        <m:ObjectStatus	title="{Posting>/title}"
+                                                                    	text = "{path: 'Createdon', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"
+																		id= "_IDObjectStatus"/>
+																		
+                                                    </upload:statuses>
+ 
+ 
+                        </upload:UploadSetItem>
+                  	</upload:items>
+ 
+            	</upload:UploadSet>
+						
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</mvc:View>

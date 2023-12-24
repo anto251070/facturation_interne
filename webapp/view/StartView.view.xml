@@ -1,0 +1,149 @@
+<mvc:View controllerName="ch.unige.facturationinterne.controller.StartView"
+    xmlns:l="sap.ui.layout"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true"
+	xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:f="sap.f">
+ 
+ 
+ 
+			<f:DynamicPageTitle 
+                    id="_IDGenDynamicPageTitle2"
+                    class="titolo">
+					<f:heading>
+						<Title id="_IDGenTitle1t" text="{i18n>title}" class="titolo"/>
+					</f:heading>
+					<f:expandedContent>
+						<Label id="_IDGenLabel1t" text="{i18n>sottotitolo}" class="titolo"/>
+					</f:expandedContent>
+
+					  
+			</f:DynamicPageTitle>
+
+    <l:VerticalLayout
+        id="VertLayout"
+		class="sapUiContentPadding"
+		width="100%">
+		<l:content>
+
+          <Title id="_IDGenLabelx7" text="{i18n>Factures_sauveg}" />
+ 
+
+            <Button
+					id="Button"
+					icon="sap-icon://add-document"
+					type="Transparent"
+					press="onPressNewInvoice"
+					text="{i18n>nuova_fattura}">
+			</Button>
+		</l:content>
+	</l:VerticalLayout>
+            <Table 
+                id="ch.unige.tabella"
+				alternateRowColors="true" 
+				growingThreshold="10"
+				mode="SingleSelectMaster"
+				selectionChange="onSelectionChanged"
+				items="{
+						path: '/FacInterneHeaderSet',
+						sorter: {
+							path: 'Belnr',
+							descending: false
+						}
+						
+					}"
+				paste="onPaste"
+                selectionMode="MultiToggle"
+                visibleRowCount="20"
+				ariaLabelledBy="title">
+
+ 				<columns>
+					<Column id="colonnaNFattura" width="11rem">
+						<Label id="LabelNFattura" text="{i18n>Nfattura}" />
+					</Column>
+
+					<Column id="colonnaNome" width="11rem">
+						<Label id="LabelNome" text="{i18n>Nome}" />
+					</Column>
+
+					<Column id="colonnaReference" width="11rem">
+						<Label id="LabelReference" text="{i18n>Reference}" />
+					</Column>
+
+					<Column id="colonnaCreazione" width="11rem">
+						<Label id="LabelCreazione" text="{i18n>Creazione}" />
+					</Column>
+
+					<Column id="colonnaComptable" width="11rem">
+						<Label id="LabelComptable" text="{i18n>Comptable}" />	
+					</Column>
+
+					<Column id="colonnaPlece" width="11rem">
+						<Label id="LabelPlece" text="{i18n>Plece}" />
+					</Column>
+
+					<Column id="colonnaChange" width="3rem">
+					 
+					</Column>
+					
+					<Column id="colonnaDelete" width="3rem" >
+					 
+					</Column>
+
+				</columns>
+	
+					<items>
+							<ColumnListItem  id="ch.unige.fi.ColumnListItem1"  vAlign="Middle"  >
+								<cells>
+							 
+									<Text  id="_IDGenObjectIdentifier1"   text="{Belnr} {Gjahr}" />
+							 
+								   	<Text id="ch.unige.fi.name"     text="{Name}"/>    
+											
+								   	<Text id="ch.unige.fi.Xblnr"    text="{Xblnr}"/>    
+
+									<Text  id="ch.unige.fi.datec"   text="{Vendor}"/>
+								
+						 	        <Text  id="ch.unige.fi.datecom" text=
+									"{
+						               constraints : {displayFormat : 'Date'},
+						               path : 'Bldat',
+						            type : 'sap.ui.model.odata.type.DateTime'
+					                 }"	/>
+							
+				
+								    <Text  id="ch.unige.fi.datep"   text=
+									"{
+						            constraints : {displayFormat : 'Date'},
+						            path : 'Budat',
+						            type : 'sap.ui.model.odata.type.DateTime'
+					                 }"	/>
+									
+							 
+  
+									   <Button
+												id="ButtonChange"
+												icon="sap-icon://edit"
+												type="Transparent"
+												press="onPressChange"
+												 >
+										</Button>
+
+							         <Button
+												id="ButtonDelete"
+												icon="sap-icon://delete"
+												type="Transparent"
+												press="onPressDelete"
+												 >
+										</Button>
+
+
+
+								</cells>
+							</ColumnListItem>
+					</items>					
+			
+			</Table>
+</mvc:View>
